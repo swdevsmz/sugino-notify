@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Scraper",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/scraper.ts",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "outFiles": ["${workspaceFolder}/**/*.js"],
+      "env": {
+        "LINE_ACCESS_TOKEN": "YOUR_LINE_ACCESS_TOKEN" // Replace with your actual token
+      }
+    }
+  ]
+}
