@@ -11,7 +11,8 @@
   "description": "",
   "dependencies": {
     "axios": "^1.9.0",
-    "playwright": "^1.52.0"
+    "playwright": "^1.52.0",
+    "sugino-notify": "file:"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
