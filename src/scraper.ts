@@ -27,7 +27,7 @@ async function scrapeSite() {
       return {
         title,
         body,
-        text: `【${title}】\n${body}\n\n`,
+        text: `【${ title }】\n${ body }\n\n`,
       };
     });
   });
@@ -58,7 +58,7 @@ async function sendLineNotification(message: string) {
     await axios.post(
       LINE_API_URL,
       { messages: [{ type: "text", text: message }] },
-      { headers: { Authorization: `Bearer ${LINE_ACCESS_TOKEN}` } }
+      { headers: { Authorization: `Bearer ${ LINE_ACCESS_TOKEN }` } }
     );
   } catch (error) {
     console.error("LINE通知の送信に失敗しました:", error);
@@ -73,7 +73,7 @@ async function main() {
 
     if (currentContent !== previousData) {
       console.log("新しい出演情報が見つかりました");
-      const message = `出演情報が更新されました:\n\n${currentContent}\n詳細はこちら：${SITE_URL}`;
+      const message = `出演情報が更新されました:\n\n${ currentContent }\n詳細はこちら：${ SITE_URL }`;
       await sendLineNotification(message);
       saveCurrentData(currentData);
       console.log("出演情報を保存し、LINE通知を送信しました");
@@ -82,7 +82,11 @@ async function main() {
     }
   } catch (error) {
     console.error("エラーが発生しました:", error);
+    process.exit(1); // エラー時は即座に終了
   }
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error("予期しないエラー:", error);
+  process.exit(1); // 予期しないエラー時も即座に終了
+});

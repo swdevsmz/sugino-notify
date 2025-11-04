@@ -1,8 +1,8 @@
 name: Daily Scraper
 
 on:
-  schedule:
-    - cron: '30 10 * * *' # 日本時間19:30に実行
+  # schedule:
+  #   - cron: "30 10 * * *" # 日本時間19:30に実行
   workflow_dispatch: # 手動実行を追加
 
 jobs:
@@ -22,13 +22,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: "16"
 
       - name: Install dependencies
         run: npm install
 
       - name: Install playwright
-        run: npx playwright install   
+        run: npx playwright install
 
       - name: Run scraper
         run: npx ts-node src/scraper.ts
